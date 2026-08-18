@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.models import InterviewRequest
 from app.models import InterviewResponse
+from app.llm_service import generate_answer
 
 
 app = FastAPI(
@@ -12,21 +13,25 @@ app = FastAPI(
 
 @app.get("/")
 def home():
+
     return {
         "message": "Mentra backend is running"
     }
 
 
-@app.post("/interview-answer",response_model=InterviewResponse)
-
+@app.post(
+    "/interview-answer",
+    response_model=InterviewResponse
+)
 def interview_answer(request: InterviewRequest):
-    temporary_answer = (
-        "This is a temporary answer. "
-        "LLM integration will be added next."
+
+    answer = generate_answer(
+        request.question,
+        request.level
     )
 
     return InterviewResponse(
         question=request.question,
         level=request.level,
-        answer=temporary_answer
+        answer=answer
     )
