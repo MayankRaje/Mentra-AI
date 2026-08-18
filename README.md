@@ -93,9 +93,7 @@ The API accepts the interview question and candidate level and returns an AI-gen
 
 Add your working Swagger screenshot here:
 
-```markdown
 ![img.png](img.png)
-```
 
 The screenshot should show the request, `200` status code, and the generated response.
 
