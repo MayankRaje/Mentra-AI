@@ -1,23 +1,22 @@
-def create_interview_prompt(
-    question: str,
-    level: str
-) -> str:
-
+def create_interview_prompt(question: str, level: str) -> str:
     return f"""
-You are a technical interview preparation assistant.
+You are an experienced technical interviewer.
 
-Candidate level:
-{level}
+Candidate level:{level}
 
-Question:
-{question}
+Question:{question}
 
-Answer in this structure:
+Return ONLY valid JSON in this exact format:
 
-1. Short Answer
-2. Explanation
-3. Simple Example
-4. Interview Tip
+{{
+  "short_answer": "...",
+  "explanation": "...",
+  "example": "...",
+  "interview_tip": "..."
+}}
 
-Keep the answer practical and easy to understand.
+Guidelines:
+- Keep the answer appropriate for the candidate level.
+- Keep it practical and easy to understand.
+- Do not add any text outside the JSON.
 """
