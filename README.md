@@ -13,6 +13,8 @@ The project is being built step by step to understand how GenAI applications wor
 * OpenRouter LLM integration
 * Free-model support through OpenRouter
 * AI-generated technical interview answers
+* Structured LLM responses
+* Pydantic validation for LLM output
 * Automatic Swagger / OpenAPI documentation
 
 ## Current Architecture
@@ -22,7 +24,7 @@ Client
   ↓
 FastAPI Endpoint
   ↓
-Pydantic Validation
+Pydantic Request Validation
   ↓
 Prompt Generation
   ↓
@@ -32,7 +34,13 @@ OpenRouter
   ↓
 Free LLM
   ↓
-AI-Generated Response
+Structured JSON Response
+  ↓
+JSON Parsing
+  ↓
+Pydantic Response Validation
+  ↓
+API Response
 ```
 
 ## Project Structure
@@ -79,10 +87,14 @@ The request passes through the backend flow:
 
 ```text
 Request
-→ Pydantic Validation
+→ FastAPI
+→ Pydantic Request Validation
 → Prompt Generation
 → OpenRouter LLM
-→ AI Response
+→ Structured JSON
+→ JSON Parsing
+→ Pydantic Response Validation
+→ API Response
 ```
 
 ## API Demo
