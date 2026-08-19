@@ -4,16 +4,13 @@ from app.models import InterviewRequest
 from app.models import InterviewResponse
 from app.llm_service import generate_answer
 
-
 app = FastAPI(
     title="Mentra",
     description="AI-powered technical interview preparation assistant"
 )
 
-
 @app.get("/")
 def home():
-
     return {
         "message": "Mentra backend is running"
     }
@@ -24,7 +21,6 @@ def home():
     response_model=InterviewResponse
 )
 def interview_answer(request: InterviewRequest):
-
     answer = generate_answer(
         request.question,
         request.level
